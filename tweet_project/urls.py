@@ -16,14 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.urls import views as authviews #authviews because to not conflict with "views" import above
 #this auth.urls gets out custom login logout urls from settings.py
 
 urlpatterns = [
-    path('', lambda request: HttpResponse(status=200), name='health'),
+    path('', lambda request: HttpResponseRedirect('/tweet/'), name='health'),
     path('admin/', admin.site.urls),
     path('tweet/', include('tweet.urls')),
     path('accounts/', include('django.contrib.auth.urls')), # redirect to tweet app custom urls
