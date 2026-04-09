@@ -26,8 +26,9 @@ SECRET_KEY = 'django-insecure-kud2k68re9^t^-6l2vh%zbyr^+9!2@_yih8)pz0&b_ca_$@1%a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+#for adding render deploy hosts the env values will added in the render site 
+ALLOWED_HOSTS = [] + os.getenv("ALLOWED_HOSTS", "").split(",")
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
 
 # Application definition
 
