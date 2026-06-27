@@ -61,6 +61,7 @@ def register(request):
             user.save()
             login(request, user) # automatically login
             return redirect('tweet_list')
+        return render(request, 'registration/register.html', { 'form' : form })
     else:            
         form = UserRegistrationForm()
         return render(request, 'registration/register.html', { 'form' : form })
@@ -69,7 +70,7 @@ def search(request):
     form = SearchForm(request.POST)
     if form.is_valid():
         text = form.cleaned_data['text']
-        tweets = get_list_or_404(Tweet, text__icontains=text)
+        tweets = Tweet.objects.filter(text__icontains=text)
     else:
         tweets = []
     return render(request, 'search.html', {'tweets': tweets})

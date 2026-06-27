@@ -7,6 +7,7 @@ class TweetForm(forms.ModelForm):
     class Meta:
         model = Tweet
         fields = ['text', 'photo'] # array because using custom form by us
+    photo = forms.ImageField(required=False)
         
 class UserRegistrationForm(UserCreationForm): #use in-built UserCreationForm
     email = forms.EmailField() # add extra field

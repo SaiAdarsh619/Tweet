@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-kud2k68re9^t^-6l2vh%zbyr^+9!2@_yih8)pz0&b_ca_$@1%a
 DEBUG = True
 
 #for adding render deploy hosts the env values will added in the render site 
-ALLOWED_HOSTS = [] + os.getenv("ALLOWED_HOSTS", "").split(",")
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+ALLOWED_HOSTS = [h for h in os.getenv("ALLOWED_HOSTS", "").split(",") if h]
+CSRF_TRUSTED_ORIGINS = [o for o in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",") if o]
 
 # Application definition
 
